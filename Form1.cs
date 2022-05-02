@@ -25,33 +25,39 @@ namespace OrderNumber
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(this.txtAddress.Text) && !string.IsNullOrEmpty(this.txtData.Text))
+            {
+                arrAddres.Add(int.Parse(this.txtAddress.Text));
+                arrData.Add(int.Parse(this.txtData.Text));
 
-            arrAddres.Add(int.Parse(this.txtAddress.Text));
-            arrData.Add(int.Parse(this.txtData.Text));
 
+                listBox1.Items.Add(this.txtAddress.Text);
+                listBox2.Items.Add(this.txtData.Text);
 
-            listBox1.Items.Add(this.txtAddress.Text);
-            listBox2.Items.Add(this.txtData.Text);
+                txtAddress.Text = "";
+                txtData.Text = "";
+            }
 
-            txtAddress.Text = "";
-            txtData.Text = "";
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            listBox3.Items.Clear();
-            listBox4.Items.Clear();
-            for (int i = 0; i < arrAddres.Count; i++)
+            if (listBox1.Items.Count > 0 && listBox2.Items.Count > 0)
             {
-                arrAddres.Sort();
-                listBox3.Items.Add(arrAddres[i]);
-            };
+                listBox3.Items.Clear();
+                listBox4.Items.Clear();
+                for (int i = 0; i < arrAddres.Count; i++)
+                {
+                    arrAddres.Sort();
+                    listBox3.Items.Add(arrAddres[i]);
+                };
 
-            for (int i = 0; i < arrData.Count; i++)
-            {
-                arrData.Sort();
-                listBox4.Items.Add(arrData[i]);
-            };
+                for (int i = 0; i < arrData.Count; i++)
+                {
+                    arrData.Sort();
+                    listBox4.Items.Add(arrData[i]);
+                };
+            }
 
         }
 
